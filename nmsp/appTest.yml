@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: schoolapp
+  namespace: nmsp
+spec:
+  destination:
+    namespace: schoolapp
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: schoolapp-subchart
+    repoURL: 'https://github.com/samgabrail/env0-argocd.git'
+    targetRevision: HEAD
+  project: default
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
